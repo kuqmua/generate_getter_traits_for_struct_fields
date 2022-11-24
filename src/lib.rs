@@ -1,3 +1,11 @@
+#![deny(
+    clippy::indexing_slicing,
+    clippy::integer_arithmetic,
+    clippy::unwrap_used,
+    clippy::float_arithmetic
+)]
+#![allow(clippy::too_many_arguments)]
+
 #[proc_macro_derive(GenerateGetterTraitsForStructFieldsFromTufaCommon)]
 pub fn derive_generate_getter_traits_for_struct_fields_from_tufa_common(
     input: proc_macro::TokenStream,
