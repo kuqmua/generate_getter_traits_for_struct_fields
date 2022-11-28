@@ -63,3 +63,45 @@ fn generate(
     };
     gen.into()
 }
+// its for maybe future type selection
+// let type_ident_string = match type_ident.clone() {
+//                 syn::Type::Path(path) => {
+//                     //todo not a full logic
+//                     match path.path.segments.len() {
+//                         1 => format!("{}", path.path.segments[0].ident),
+//                         _ => panic!(
+//                             "GenerateGetterTraitsForStructFields path.path.segments.len() != 1"
+//                         ),
+//                     }
+//                 }
+//                 // syn::Type::Array(_) => todo!(),
+//                 // syn::Type::BareFn(_) => todo!(),
+//                 // syn::Type::Group(_) => todo!(),
+//                 // syn::Type::ImplTrait(_) => todo!(),
+//                 // syn::Type::Infer(_) => todo!(),
+//                 // syn::Type::Macro(_) => todo!(),
+//                 // syn::Type::Never(_) => todo!(),
+//                 // syn::Type::Paren(_) => todo!(),
+//                 // syn::Type::Ptr(_) => todo!(),
+//                 // syn::Type::Reference(_) => todo!(),
+//                 // syn::Type::Slice(_) => todo!(),
+//                 // syn::Type::TraitObject(_) => todo!(),
+//                 // syn::Type::Tuple(_) => todo!(),
+//                 // syn::Type::Verbatim(_) => todo!(),
+//                 _ => panic!("GenerateGetterTraitsForStructFields supports only syn::Type::Path"),
+//             };
+//             let u8_handle = "u8";
+//             let (type_ident_gen, field_ident_gen) = match type_ident_string.eq(u8_handle) {
+//                 true => (quote::quote! {u8}, quote::quote! {self.#field_ident}),
+//                 false => (
+//                     quote::quote! {&#type_ident},
+//                     quote::quote! {&self.#field_ident},
+//                 ),
+//             };
+//             quote::quote! {
+//                 impl #path_trait_ident for #ident {
+//                     fn #function_name_ident (&self) -> #type_ident_gen {
+//                         #field_ident_gen
+//                     }
+//                 }
+//             }
