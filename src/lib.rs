@@ -54,6 +54,11 @@ fn generate(
                         &self.#field_ident
                     }
                 }
+                impl #path_trait_ident for &#ident {
+                    fn #function_name_ident (&self) -> &#type_ident {
+                        &self.#field_ident
+                    }
+                }
             }
         }),
         _ => panic!("GenerateGetterTraitsForStructFields only works on Struct"),
