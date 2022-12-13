@@ -41,10 +41,9 @@ fn generate(
                 ),
             };
             let type_ident = field.ty;
-            let path_trait_ident =
-                format!("{path}::config_mods::traits::fields::Get{pascal_case_field_ident}")
-                    .parse::<proc_macro2::TokenStream>()
-                    .expect("path_trait_ident parse failed");
+            let path_trait_ident = format!("{path}::traits::fields::Get{pascal_case_field_ident}")
+                .parse::<proc_macro2::TokenStream>()
+                .expect("path_trait_ident parse failed");
             let function_name_ident = format!("get_{field_ident}")
                 .parse::<proc_macro2::TokenStream>()
                 .expect("function_name_ident parse failed");
