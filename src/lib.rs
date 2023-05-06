@@ -24,6 +24,7 @@ fn generate(
     input: proc_macro::TokenStream,
     path: proc_macro_helpers::path::Path,
 ) -> proc_macro::TokenStream {
+    proc_macro_helpers::panic_location::panic_location("GenerateGetterTraitsForStructFields");
     use convert_case::Casing;
     let ast: syn::DeriveInput =
         syn::parse(input).expect("GenerateGetterTraitsForStructFields syn::parse(input) failed");
