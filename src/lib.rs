@@ -6,24 +6,8 @@
 )]
 #![allow(clippy::too_many_arguments)]
 
-#[proc_macro_derive(GenerateGetterTraitsForStructFieldsFromTufaCommon)]
-pub fn derive_generate_getter_traits_for_struct_fields_from_tufa_common(
-    input: proc_macro::TokenStream,
-) -> proc_macro::TokenStream {
-    generate(input, proc_macro_helpers::path::Path::TufaCommon)
-}
-
-#[proc_macro_derive(GenerateGetterTraitsForStructFieldsFromCrate)]
-pub fn derive_generate_getter_traits_for_struct_fields_from_crate(
-    input: proc_macro::TokenStream,
-) -> proc_macro::TokenStream {
-    generate(input, proc_macro_helpers::path::Path::Crate)
-}
-
-fn generate(
-    input: proc_macro::TokenStream,
-    path: proc_macro_helpers::path::Path,
-) -> proc_macro::TokenStream {
+#[proc_macro_derive(GenerateGetterTraitsForStructFields)]
+pub fn generate_getter_traits_for_struct_fields(input: proc_macro::TokenStream) -> proc_macro::TokenStream {
     proc_macro_helpers::panic_location::panic_location("GenerateGetterTraitsForStructFields");
     use convert_case::Casing;
     let ast: syn::DeriveInput =
@@ -42,7 +26,7 @@ fn generate(
                 ),
             };
             let type_ident = field.ty;
-            let path_trait_ident = format!("{path}::traits::fields::Get{pascal_case_field_ident}")
+            let path_trait_ident = format!("crate::traits::fields::Get{pascal_case_field_ident}")
                 .parse::<proc_macro2::TokenStream>()
                 .expect("path_trait_ident parse failed");
             let function_name_ident = format!("get_{field_ident}")
