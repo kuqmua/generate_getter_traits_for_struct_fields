@@ -7,7 +7,9 @@
 #![allow(clippy::too_many_arguments)]
 
 #[proc_macro_derive(GenerateGetterTraitsForStructFields)]
-pub fn generate_getter_traits_for_struct_fields(input: proc_macro::TokenStream) -> proc_macro::TokenStream {
+pub fn generate_getter_traits_for_struct_fields(
+    input: proc_macro::TokenStream,
+) -> proc_macro::TokenStream {
     proc_macro_helpers::panic_location::panic_location();
     use convert_case::Casing;
     let ast: syn::DeriveInput =
@@ -26,9 +28,10 @@ pub fn generate_getter_traits_for_struct_fields(input: proc_macro::TokenStream) 
                 ),
             };
             let type_ident = field.ty;
-            let path_trait_ident = format!("crate::common::config::config_fields::Get{pascal_case_field_ident}")
-                .parse::<proc_macro2::TokenStream>()
-                .expect("path_trait_ident parse failed");
+            let path_trait_ident =
+                format!("crate::common::config::config_fields::Get{pascal_case_field_ident}")
+                    .parse::<proc_macro2::TokenStream>()
+                    .expect("path_trait_ident parse failed");
             let function_name_ident = format!("get_{field_ident}")
                 .parse::<proc_macro2::TokenStream>()
                 .expect("function_name_ident parse failed");
