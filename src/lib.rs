@@ -11,7 +11,6 @@ pub fn generate_getter_traits_for_struct_fields(
     input: proc_macro::TokenStream,
 ) -> proc_macro::TokenStream {
     proc_macro_helpers::panic_location::panic_location();
-    use convert_case::Casing;
     let ast: syn::DeriveInput =
         syn::parse(input).expect("GenerateGetterTraitsForStructFields syn::parse(input) failed");
     let ident = &ast.ident;
@@ -22,7 +21,10 @@ pub fn generate_getter_traits_for_struct_fields(
                 Some(field_ident) => (
                     field_ident.clone(),
                     syn::Ident::new(
-                        &format!("{field_ident}").to_case(convert_case::Case::Pascal),
+                        &convert_case::Casing::to_case(
+                            &format!("{field_ident}"),
+                            convert_case::Case::Pascal,
+                        ),
                         ident.span(),
                     ),
                 ),
