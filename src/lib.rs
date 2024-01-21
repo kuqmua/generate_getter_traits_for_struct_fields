@@ -10,7 +10,7 @@
 pub fn generate_getter_traits_for_struct_fields(
     input: proc_macro::TokenStream,
 ) -> proc_macro::TokenStream {
-    proc_macro_helpers::panic_location::panic_location();
+    proc_macro_common::panic_location::panic_location();
     let ast: syn::DeriveInput =
         syn::parse(input).expect("GenerateGetterTraitsForStructFields syn::parse(input) failed");
     let ident = &ast.ident;
